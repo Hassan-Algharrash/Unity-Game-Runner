@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
     public bool IsGameEnded => gameEnded;
     
 
+void Start()
+{
+    Cursor.lockState = CursorLockMode.Locked;
+    Cursor.visible = false;
+}
+
 
     public void Win()
 {
@@ -28,14 +34,18 @@ public class GameManager : MonoBehaviour
 
 public void Fail()
 {
+    Debug.Log("FAIL CALLED");
+
     if (gameEnded) return;
     gameEnded = true;
+
+    Cursor.lockState = CursorLockMode.None;
+    Cursor.visible = true;
 
     failPanel.SetActive(true);
     FreezeGame();
 
-    Cursor.lockState = CursorLockMode.None;
-    Cursor.visible = true;
+  
 }
 
 
