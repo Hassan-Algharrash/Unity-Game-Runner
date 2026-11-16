@@ -13,6 +13,9 @@ public class ZombieAI : MonoBehaviour
     private int currentPoint = 0;
     private bool chasingPlayer = false;
 
+    public float loseSightDuration = 3f;
+    private float loseSightTimer = 0f;
+
     private Animator anim;
 
     void Start()
@@ -38,6 +41,21 @@ public class ZombieAI : MonoBehaviour
         if (distanceToPlayer < detectionRange)
         {
             chasingPlayer = true;
+            loseSightTimer = 0f;
+        }
+        else if (chasingPlayer)
+        {
+            loseSightTimer += Time.deltaTime;
+
+            if (loseSightTimer >= loseSightDuration)
+            {
+                chasingPlayer = false;
+
+                if (patrolPoints.Length > 0)
+                {
+                    agent.SetDestination(patrolPoints[currentPoint].position);
+                }
+            }
         }
 
         // Chase player

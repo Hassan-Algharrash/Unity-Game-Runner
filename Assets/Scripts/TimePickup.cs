@@ -15,7 +15,14 @@ public class TimePickup : MonoBehaviour
                 timer.timeRemaining += bonusTime;
             }
 
-            Destroy(gameObject);
+            PickupManager manager = FindFirstObjectByType<PickupManager>();
+
+                if (manager != null)
+                {
+                    manager.PickupCollected();
+                }
+
+                Destroy(gameObject);
         }
     }
 
