@@ -12,3 +12,7 @@ UserSettings/
 *.csproj
 *.sln
 *.user
+Assets/character.fbx
+Assets/Walking.fbx
+Assets/Injured Run.fbx
+Assets/Look Over Shoulder.fbx
